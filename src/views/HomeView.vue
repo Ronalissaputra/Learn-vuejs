@@ -1,18 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <Layout>
+    <div class="md:mx-60 mx-4">
+      <h1 class="text-3xl">Anda sudah memencet sebanyak {{ count }}</h1>
+      <div class="flex space-x-5">
+        <button @click="updateCount" class="px-4 rounded-md py-2 bg-indigo-600 text-white">Tambah</button>
+        <button @click="deleteCount" class="px-4 rounded-md py-2 bg-indigo-600 text-white">Kurang</button>
+      </div>
+    </div>
+  </Layout>
 </template>
 
+<!-- script -->
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Layout from '@/components/layout/Layout.vue';
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    HelloWorld
+    Layout,
+  },
+  data() {
+    return {
+      count: 0,
+    }
+  },
+  methods: {
+    updateCount() {
+      this.count += 1;
+    },
+    deleteCount() {
+      if(this.count > 0) {
+        this.count -= 1;
+      }
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped></style>
