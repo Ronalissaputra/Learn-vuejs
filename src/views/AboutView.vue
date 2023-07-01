@@ -25,7 +25,7 @@
           <div 
             v-for="item in response" 
             :key="item.id" 
-            class="border-2 ">
+            class="border-2 shadow-sm">
             <img :src="item.images[0]" alt="" class="w-full h-72">
             <div class="p-2 text-xl">
               <p>{{ item.title }}</p>
@@ -35,8 +35,8 @@
             </div>
             <div class="flex p-2 gap-2 items-center justify-center">
               <button class="w-20 h-10 bg-slate-900 text-white text-2xl rounded-md">-</button>
-              <p class="w-full h-10 bg-slate-900 text-white text-center text-2xl rounded-md">0</p>
-              <button class="w-20 h-10 bg-slate-900 text-white text-2xl rounded-md">+</button>
+              <p class="w-full h-10 bg-slate-900 text-white text-center text-2xl rounded-md">{{ add[item.id] }}</p>
+              <button @click="setAdd(item)" class="w-20 h-10 bg-slate-900 text-white text-2xl rounded-md">+</button>
             </div>
           </div>
         </div>
@@ -57,12 +57,19 @@ export default {
     return {
       response: [],
       setCategory: "",
+      add: {},
     }
   },
   mounted() {
     this.request();
   },
   methods: {
+    setAdd(item) {
+      if(!this.add[item.id]) {
+        this.add[item.id] = 0;
+      }
+      this.add[item.id] += 1;
+    },
     async request() {
       try {
         let req;

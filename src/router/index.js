@@ -3,7 +3,7 @@ import AboutView from "../views/AboutView.vue";
 
 const routes = [
   {
-    path: "/product",
+    path: "/",
     name: "Product",
     component: AboutView,
   },
